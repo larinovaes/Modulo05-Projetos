@@ -5,21 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping("/carro")
 public class CarroController {
 
-    @GetMapping("/fusca")
-    public CarroDTO exibirFusca(){
-        CarroDTO fusca = new CarroDTO("Fusca","vermelha","mil",1997);
-        return fusca;
-    }
-
-    @GetMapping("/kombi")
-    public CarroDTO exibirKombi(){
-       CarroDTO kombi = new CarroDTO("Kombi","Branca","1.6",1976);
-        return kombi;
-    }
+    private List<CarroDTO> concessionaria = new ArrayList<>();
 }
