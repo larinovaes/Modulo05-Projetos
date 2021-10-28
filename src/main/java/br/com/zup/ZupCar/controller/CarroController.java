@@ -7,7 +7,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 @RestController
 @RequestMapping("/carros")
@@ -53,6 +52,16 @@ public class CarroController {
             }
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não Encontrado");
+    }
+    @DeleteMapping("/{nome}")
+    @ResponseStatus(HttpStatus.NO_CONTENT) //STATUS 204
+    public void removerCarro(@PathVariable String nome){
+        for (CarroDTO referencia: concessionaria) {
+            if (referencia.getModelo().equalsIgnoreCase(nome)) {
+                concessionaria.remove(nome);
+            }
+        }
+      throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 }
 
