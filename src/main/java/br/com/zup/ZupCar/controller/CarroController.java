@@ -7,6 +7,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 @RestController
 @RequestMapping("/carros")
@@ -37,5 +38,16 @@ public class CarroController {
         }
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Não Encontrado");
     }
+
+    @PutMapping("/{novoNome}")
+    public  CarroDTO atualizarCarro(@PathVariable String novoNome){
+        for (CarroDTO referencia: concessionaria) {
+            if (referencia.getModelo().equalsIgnoreCase(novoNome)){
+                return referencia;
+            }
+        }
+        throw  new ResponseStatusException(HttpStatus.NOT_FOUND);
+    }
+
 }
 
